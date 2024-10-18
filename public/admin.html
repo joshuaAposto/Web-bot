@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - NashBot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0e0e0e;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 20px 0;
+      font-size: 1.8rem;
+      background: -webkit-linear-gradient(#e1e1e1, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #command-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #666;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .input-container input,
+    .input-container textarea {
+      padding: 12px;
+      border: 1px solid #666;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: border-color 0.3s;
+      resize: none;
+    }
+
+    .input-container input:focus,
+    .input-container textarea:focus {
+      border-color: #ff4a4a;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .input-container button {
+      background-color: #FF4848;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .input-container button:hover {
+      background-color: #fff;
+      color: #FF4848;
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #command-form {
+        padding: 15px;
+      }
+
+      .input-container button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  <div id="command-form">
+    <div class="input-container">
+      <input type="text" id="command-name" placeholder="Command Name..." required />
+      <textarea id="command-code" placeholder="Command Code..." rows="5" required></textarea>
+      <button onclick="addCommand()">Add Command</button>
+    </div>
+    <p>Add new commands for NashBot!</p>
+  </div>
+
+  <script>
+    function addCommand() {
+      const commandName = document.getElementById("command-name").value.trim();
+      const commandCode = document.getElementById("command-code").value.trim();
+
+      if (!commandName || !commandCode) return;
+
+      fetch("/api/admin/add-command", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: commandName, code: commandCode }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        document.getElementById("command-name").value = "";
+        document.getElementById("command-code").value = "";
+      })
+      .catch(error => console.error("Error:", error));
+    }
+  </script>
+</body>
+</html>

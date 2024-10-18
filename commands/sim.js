@@ -11,7 +11,7 @@ module.exports = {
     }
 
     const prompt = args.join(" ");
-    const url = `https://sim.up.railway.app/nash?prompt=${encodeURIComponent(prompt)}&apiKey=nsh-82f0bfcb102a623e5b415b51538b723c`;
+    const url = `https://sim.up.railway.app/nash?prompt=${encodeURIComponent(prompt)}&apiKey=nsh-883e7484a2b1635796654b59e9192b62`;
 
     try {
       const response = await axios.get(url);

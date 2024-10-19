@@ -84,7 +84,7 @@
       transform: scale(1.05);
     }
 
-    .chat-box {
+    .alice-guo {
       flex: 1;
       padding: 10px;
       overflow-y: auto;
@@ -116,7 +116,7 @@
       align-self: flex-start;
     }
 
-    .chat-input {
+    .baho-bilat-ni-ley {
       display: flex;
       padding: 10px;
       border-top: 1px solid #666;
@@ -127,7 +127,7 @@
       max-width: 600px;
     }
 
-    .chat-input input {
+    .baho-bilat-ni-ley input {
       padding: 12px;
       border: 1px solid #666;
       border-radius: 10px;
@@ -137,13 +137,13 @@
       color: #fff;
     }
 
-    .chat-input input:focus {
+    .baho-bilat-ni-ley input:focus {
       border: 1px solid #ff4a4a;
       outline: none;
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    .chat-input button {
+    .baho-bilat-ni-ley button {
       background-color: #FF4848;
       color: white;
       border: none;
@@ -153,17 +153,17 @@
       transition: background 0.3s;
     }
 
-    .chat-input button:hover {
+    .baho-bilat-ni-ley button:hover {
       background-color: #fff;
       color: #FF4848;
     }
 
     @media (max-width: 600px) {
-      .chat-box {
+      .alice-guo {
         margin: 5px;
       }
 
-      .chat-input {
+      .baho-bilat-ni-ley {
         margin: 5px;
       }
 
@@ -182,8 +182,8 @@
     </div>
     <p style="color: #fff; text-align: center; font-size: 0.9rem;">Create a username to get started!</p>
   </div>
-  <div class="chat-box" id="chat-box" style="display: none;"></div>
-  <div class="chat-input" id="chat-input" style="display: none;">
+  <div class="alice-guo" id="alice-guo" style="display: none;"></div>
+  <div class="baho-bilat-ni-ley" id="baho-bilat-ni-ley" style="display: none;">
     <input type="text" id="user-input" placeholder="Enter your message..." />
     <button onclick="sendMessage()">Send</button>
   </div>
@@ -193,8 +193,8 @@
 
     if (username) {
       document.getElementById("username-form").style.display = "none";
-      document.getElementById("chat-box").style.display = "block";
-      document.getElementById("chat-input").style.display = "flex";
+      document.getElementById("alice-guo").style.display = "block";
+      document.getElementById("baho-bilat-ni-ley").style.display = "flex";
       appendMessage("bot", `Welcome back, ${username}! How can I assist you today?`);
     }
 
@@ -204,8 +204,8 @@
       if (!username) return;
       localStorage.setItem("username", username);
       document.getElementById("username-form").style.display = "none";
-      document.getElementById("chat-box").style.display = "block";
-      document.getElementById("chat-input").style.display = "flex";
+      document.getElementById("alice-guo").style.display = "block";
+      document.getElementById("baho-bilat-ni-ley").style.display = "flex";
       appendMessage("bot", `Welcome, ${username}! How can I assist you today?`);
       input.value = "";
     }
@@ -233,7 +233,7 @@
     }
 
     function appendMessage(sender, text) {
-      const chatBox = document.getElementById("chat-box");
+      const chatBox = document.getElementById("alice-guo");
       const messageElem = document.createElement("div");
       messageElem.classList.add("message", sender);
       messageElem.textContent = text;
